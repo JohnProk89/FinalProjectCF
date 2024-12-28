@@ -21,7 +21,16 @@ public class Gamer extends AbstractEntity {
     @Column(unique = true)
     private String uuid;
 
+    @Column(name = "is_active")
     private Boolean isActive;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "personal_info_id")
+    private PersonalInfo personalInfo;
 
     @PrePersist
     public void initializeUUID() {
