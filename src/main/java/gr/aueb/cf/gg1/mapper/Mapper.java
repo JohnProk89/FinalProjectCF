@@ -1,8 +1,6 @@
 package gr.aueb.cf.gg1.mapper;
 
-import gr.aueb.cf.gg1.dto.GamerInsertDTO;
-import gr.aueb.cf.gg1.dto.PersonalInfoInsertDTO;
-import gr.aueb.cf.gg1.dto.UserInsertDTO;
+import gr.aueb.cf.gg1.dto.*;
 import gr.aueb.cf.gg1.model.Gamer;
 import gr.aueb.cf.gg1.model.PersonalInfo;
 import gr.aueb.cf.gg1.model.User;
@@ -14,6 +12,28 @@ import org.springframework.stereotype.Component;
 public class Mapper {
 
     // private final PasswordEncoder passwordEncoder
+
+    public GamerReadOnlyDTO mapToGamerReadOnlyDTO(Gamer gamer) {
+        var dto = new GamerReadOnlyDTO();
+
+        dto.setId(gamer.getId());
+        dto.setUuid(gamer.getUuid());
+        dto.setIsActive(gamer.getIsActive());
+
+        // map to UserReadOnlyDTO
+        var userDTO = new UserReadOnlyDTO();
+        userDTO.setFirstname(gamer.getUser().getFirstname());
+        userDTO.setLastname(gamer.getUser().getLastname());
+        dto.setUser(userDTO);
+
+        // map to PersonalInfoDTO
+        var personalInfoDTO = new PersonalInfoReadOnlyDTO();
+        personalInfoDTO.setGamingId(gamer.getPersonalInfo().getGamingId());
+        dto.setPersonalInfo(personalInfoDTO);
+
+        return dto;
+
+    }
 
     public Gamer mapToGamerEntity(GamerInsertDTO gamerInsertDTO) {
         Gamer gamer = new Gamer();
