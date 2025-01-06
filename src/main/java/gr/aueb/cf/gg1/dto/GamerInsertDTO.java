@@ -16,7 +16,7 @@ public class GamerInsertDTO {
     private Boolean isActive;
 
     @NotNull(message = "User details must not be null")
-    private UserInsertDTO userInsertDTO;
+    private UserInsertDTO user;
 
     @NotNull(message = "Personal info must not be null")
     private PersonalInfoInsertDTO personalInfo;

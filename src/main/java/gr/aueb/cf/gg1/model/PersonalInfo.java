@@ -22,6 +22,7 @@ public class PersonalInfo extends AbstractEntity {
     @JoinColumn(name = "attachment_id")
     private Attachment attachment;
 
+    @Column(unique = true)
     private String gamingId;
     private int age;
     private String platform;
