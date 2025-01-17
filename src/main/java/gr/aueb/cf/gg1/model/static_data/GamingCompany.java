@@ -25,6 +25,6 @@ public class GamingCompany {
     private GamingCompany gamingCompany;
 
     @Getter(AccessLevel.PRIVATE)
-    @ManyToMany(mappedBy = "platforms")
+    @OneToMany(mappedBy = "gaming_companies")
     private Set<Developer> developers = new HashSet<>();
 }

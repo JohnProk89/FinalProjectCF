@@ -51,3 +51,5 @@ public class Developer extends AbstractEntity{
         if (uuid == null) uuid = UUID.randomUUID().toString();
     }
 }
+
+
