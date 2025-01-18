@@ -22,7 +22,7 @@ public class Platform {
     private String name;
 
     @Getter(AccessLevel.PRIVATE)
-    @OneToMany(mappedBy = "gaming_company")
+    @OneToMany(mappedBy = "platform", cascade = CascadeType.ALL)
     private Set<GamingCompany> gamingCompanies = new HashSet<>();
 
     public Set<GamingCompany> getAllGamingCompanies() {

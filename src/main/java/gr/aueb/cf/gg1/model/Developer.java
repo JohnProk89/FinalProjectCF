@@ -1,5 +1,4 @@
 package gr.aueb.cf.gg1.model;
-
 import gr.aueb.cf.gg1.model.static_data.GamingCompany;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,8 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -17,7 +14,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Table(name = "developers")
-public class Developer extends AbstractEntity{
+public class Developer extends AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,23 +30,12 @@ public class Developer extends AbstractEntity{
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "developers_gaming_companies")
-    private Set<GamingCompany> gamingCompanies = new HashSet<>();
-
-    public void addGameCompanies(GamingCompany gamingCompany) {
-        if (gamingCompanies == null) gamingCompanies = new HashSet<>();
-        gamingCompanies.add(gamingCompany);
-    }
-
-    public boolean hasGamingCompanies(GamingCompany gamingCompany) {
-        return gamingCompanies != null && !gamingCompanies.isEmpty();
-    }
+    @ManyToOne
+    @JoinColumn(name = "gaming_company_id")
+    private GamingCompany gamingCompany;
 
     @PrePersist
     public void initializeUUID() {
         if (uuid == null) uuid = UUID.randomUUID().toString();
     }
 }
-
-

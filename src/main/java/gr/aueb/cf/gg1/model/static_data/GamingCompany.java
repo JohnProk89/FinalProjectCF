@@ -18,13 +18,13 @@ public class GamingCompany {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "gaming_company_id")
-    private GamingCompany gamingCompany;
+    @JoinColumn(name = "platform_id") // Αναφορά στο πεδίο της κλάσης Platform
+    private Platform platform;
 
-    @Getter(AccessLevel.PRIVATE)
-    @OneToMany(mappedBy = "gaming_companies")
+    @OneToMany(mappedBy = "gamingCompany", cascade = CascadeType.ALL)
     private Set<Developer> developers = new HashSet<>();
 }
